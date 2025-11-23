@@ -1,0 +1,116 @@
+
+
+    <!-- Form send code here -->
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 font-poppins">Contact Us</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-secondary to-accent mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Ready to discuss your PCC pole requirements? Get in touch with our expert team for customized solutions.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl" data-aos="fade-right">
+    <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
+
+    <form class="space-y-6" id="contactForm">
+        <input type="hidden" name="access_key" value="ed573845-ba48-4272-8d1b-d05dd221bbc9">
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Name *</label>
+                <input type="text" name="name" required
+                    class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-300"
+                    placeholder="Your Name">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Phone *</label>
+                <input type="tel" name="phone" required
+                    class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-300"
+                    placeholder="Your Phone">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Email *</label>
+            <input type="email" name="email" required
+                class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-300"
+                placeholder="your@email.com">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Product Interest</label>
+            <select name="product_interest"
+                class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-white">
+                <option value="">Select Product</option>
+                <option value="9m-200kg">9M PCC Pole - 200kg</option>
+                <option value="9m-400kg">9M PCC Pole - 400kg</option>
+                <option value="cutting-service">Custom Cutting Services</option>
+                <option value="bulk-order">Bulk Order</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Message *</label>
+            <textarea name="message" required rows="4"
+                class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-300"
+                placeholder="Tell us about your requirements..."></textarea>
+        </div>
+
+        <button type="submit"
+            class="w-full bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary text-white py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Send Message
+        </button>
+    </form>
+</div>
+<!-- end form code here -->
+
+
+
+
+
+
+ 
+java code here -> 
+
+
+const form = document.getElementById('contactForm');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const originalText = submitBtn.textContent;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
+
+
