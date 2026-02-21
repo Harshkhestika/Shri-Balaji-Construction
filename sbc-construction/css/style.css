@@ -13,7 +13,7 @@
     background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(31, 41, 55, 0.3));
 }
 
-/* Smooth Scrolling */
+/* Smooth Scrolling's */
 html {
     scroll-behavior: smooth;
 }
