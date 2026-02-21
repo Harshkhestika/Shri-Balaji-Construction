@@ -24,7 +24,7 @@ html {
     transition: all 0.3s ease;
 }
 
-.nav-link::after {
+.nav-link::after  {
     content: '';
     position: absolute;
     width: 0;
